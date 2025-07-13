@@ -1,0 +1,3 @@
+class ReactionDataEntity {
+  const ReactionDataEntity();
+}

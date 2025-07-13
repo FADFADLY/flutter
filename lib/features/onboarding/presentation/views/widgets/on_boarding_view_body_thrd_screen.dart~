@@ -1,0 +1,19 @@
+import 'package:graduationproject/core/constants/imports.dart';
+class OnBoardingViewBodyThrdScreen extends StatelessWidget {
+  const OnBoardingViewBodyThrdScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return OnBoardingScreen(
+      currentPage: 2,
+      title: Strings.thirdPageTitle,
+      description: Strings.thirdPageDescription,
+      descriptionTextStyle: AppStyles.onBoardingSubtitle,
+      titleTextStyle: AppStyles.onBoardingTitle,
+      assetImage: Image.asset(AssetsPath.onboardingImagesImg2),
+      customizedBoxDecoration: const BoxDecoration(
+        color: Color(0xffE8EBF0),
+      ),
+    );
+  }
+}

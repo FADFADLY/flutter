@@ -1,0 +1,80 @@
+import 'package:graduationproject/core/constants/imports.dart';
+
+
+class SignupCubit extends Cubit<SignupState> {
+  SignupCubit({required this.authRepository}) : super(SignupFormState());
+
+  final AuthRepo authRepository;
+
+  void updateName(String name) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(name: name, msg: null));
+    }
+  }
+
+  void updateDisplayName(String displayName) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(displayName: displayName, msg: null));
+    }
+  }
+
+  void updateEmail(String email) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(email: email, msg: null));
+    }
+  }
+
+  void updatePassword(String password) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(password: password, msg: null));
+    }
+  }
+
+  void updateConfirmPassword(String confirmPassword) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(confirmPassword: confirmPassword, msg: null));
+    }
+  }
+
+  void updateGender(String? gender) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(gender: gender, msg: null));
+    }
+  }
+
+  void updateAge(String age) {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).copyWith(age: age, msg: null));
+    }
+  }
+
+  void validateForm() {
+    if (state is SignupFormState) {
+      emit((state as SignupFormState).validate());
+    }
+  }
+
+  Future<void> registerUser() async {
+    if (state is SignupFormState) {
+      final formState = state as SignupFormState;
+      if (formState.msg == null) {
+        emit(SignupLoadingState());
+        final user = await authRepository.register(
+          registerRequest: RegisterRequest(
+            name: formState.name,
+            username: formState.displayName,
+            email: formState.email,
+            gender: formState.gender ?? '',
+            age: formState.age,
+            password: formState.password,
+            passwordConfirmation: formState.confirmPassword,
+          ),
+        );
+        user.fold(
+              (failure) => emit(SignupFailureState(message: failure.message)),
+              (success) => emit(SignupSuccessState()),
+        );
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+import 'package:bloc/bloc.dart';
+import 'package:graduationproject/features/blog/domain/repo/repo.dart';
+import 'package:meta/meta.dart';
+
+import '../../../../domain/entity/article_entity.dart';
+
+part 'article_state.dart';
+
+class ArticleCubit extends Cubit<ArticleState> {
+  ArticleCubit({required this.blogRepo}) : super(ArticleInitial());
+  final BlogRepo blogRepo;
+
+  Future<void> getArticles() async {
+    emit(ArticleLoading());
+    final result = await blogRepo.getArticles();
+    result.fold((l) {
+      print("error: $l");
+      emit(ArticleError(message: l.message));
+    }, (r) {
+      print("loooooooooooooooook here success: ${r.data.map(
+        (e) => e.title.toString(),
+      )}");
+      emit(ArticleLoaded(articles: r.data));
+    });
+  }
+}

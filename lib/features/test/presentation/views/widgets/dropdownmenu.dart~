@@ -1,0 +1,169 @@
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:graduationproject/core/constants/imports.dart';
+
+class DropDownMenu extends StatefulWidget {
+  const DropDownMenu({
+    super.key,
+    required this.items,
+    required this.selectedItem,
+    required this.onChanged,
+  });
+
+  final List<String> items;
+  final String selectedItem;
+  final void Function(String?)? onChanged;
+
+  @override
+  State<DropDownMenu> createState() => _DropDownMenuState();
+}
+
+class _DropDownMenuState extends State<DropDownMenu> {
+  String? errorText; // To store and display the error message
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end, // Align error text to the right
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 38), // Fixed height
+            child: DropdownSearch<String>(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  setState(() {
+                    errorText = 'يرجى اختيار اختبار';
+                  });
+                  return null; // Return null to prevent default error text
+                }
+                if (!widget.items.contains(value)) {
+                  setState(() {
+                    errorText = 'الاختبار المختار غير صالح';
+                  });
+                  return null;
+                }
+                setState(() {
+                  errorText = null; // Clear error if validation passes
+                });
+                return null;
+              },
+              items: widget.items,
+              selectedItem: widget.selectedItem.isEmpty ? null : widget.selectedItem,
+              onChanged: (value) {
+                widget.onChanged?.call(value);
+                // Re-validate when the value changes
+                final form = Form.of(context);
+                if (form != null) {
+                  form.validate();
+                }
+              },
+              dropdownButtonProps: const DropdownButtonProps(
+                icon: SizedBox.shrink(),
+              ),
+              dropdownDecoratorProps: DropDownDecoratorProps(
+                textAlign: TextAlign.right,
+                dropdownSearchDecoration: InputDecoration(
+                  hintText: "اختر اختبارًا",
+                  hintStyle: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 14,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Icon(
+                      Icons.arrow_drop_down,
+                      size: 25,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: AppColors.secondaryColor,
+                      width: 1,
+                    ),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.red,
+                      width: 1,
+                    ),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.red,
+                      width: 1,
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  errorStyle: const TextStyle(
+                    height: 0, // Hide default error text
+                    fontSize: 0,
+                  ),
+                ),
+              ),
+              popupProps: PopupProps.menu(
+                showSelectedItems: true,
+                showSearchBox: false,
+                menuProps: MenuProps(
+                  borderRadius: BorderRadius.circular(20),
+                  backgroundColor: Colors.white,
+                  elevation: 4,
+                ),
+                constraints: BoxConstraints(
+                  maxHeight: 200,
+                  maxWidth: MediaQuery.of(context).size.width,
+                ),
+                fit: FlexFit.loose,
+                containerBuilder: (context, popupWidget) => popupWidget,
+                itemBuilder: (context, item, isSelected) => Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Text(
+                    item,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isSelected ? AppColors.secondaryColor : Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        if (errorText != null) // Show error text manually
+          Padding(
+            padding: const EdgeInsets.only(right: 24.0, top: 4.0),
+            child: Text(
+              errorText!,
+              style: const TextStyle(
+                color: Colors.red,
+                fontSize: 12, // Smaller font size for error text
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}

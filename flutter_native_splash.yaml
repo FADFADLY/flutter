@@ -1,0 +1,8 @@
+flutter_native_splash:
+  background_image: assets/images/splash_screen/splash.png
+  android: true              # تفعيل الأندرويد
+  ios: false                 # تعطيل iOS
+  fullscreen: true           # شاشة كاملة
+  android_12:
+    background_image: assets/images/splash_screen/splash.png
+    color: "#FFFFFF"

@@ -1,0 +1,142 @@
+name: graduationproject
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ^3.6.1
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  auto_size_text: ^3.0.0
+  flutter_svg: ^2.1.0
+  shared_preferences: ^2.5.3
+  modal_progress_hud_nsn: ^0.5.1
+  firebase_core: ^3.14.0
+  audio_waveforms: ^1.3.0
+  flutter_bloc: ^9.1.1
+  dropdown_search: ^5.0.6
+  cached_network_image: ^3.3.1
+  flutter_spinkit: ^5.2.1
+  analog_clock: ^0.1.1
+  get_it: ^8.0.3
+  intl: ^0.19.0
+  intl_utils: ^2.8.8
+  flutter_countdown_timer: ^4.1.0
+  http: ^1.4.0
+  flutter_secure_storage: ^9.2.4
+  audioplayers: ^6.5.0
+  persistent_bottom_nav_bar: ^6.2.1
+  timer_flutter: ^0.2.3-beta
+  device_preview: ^1.2.0
+  dartz: ^0.10.1
+  hive: ^2.2.3
+  file_picker: ^10.2.0
+  hive_flutter: ^1.1.0
+  pull_to_refresh: ^2.0.0
+  dots_indicator: ^4.0.1
+  firebase_auth: ^5.6.0
+  pin_code_fields: ^8.0.1
+  cloud_firestore: ^5.6.9
+  numberpicker: ^2.1.2
+  circular_countdown_timer: ^0.2.4
+  google_fonts: ^6.2.1
+  flutter_native_splash: ^2.4.6
+  image_picker: ^1.1.2
+  permission_handler: ^12.0.0+1
+  fl_chart: ^0.71.0
+  table_calendar: ^3.1.3
+  liquid_pull_to_refresh: ^3.0.1
+  custom_refresh_indicator: ^4.0.1
+  shimmer: ^3.0.0
+  path_provider: ^2.1.5
+  skeletonizer: ^1.4.3
+  flutter_pdfview: ^1.4.1+1
+  vibration: ^3.1.3
+  just_audio: ^0.10.4
+  syncfusion_flutter_pdfviewer: ^30.1.37
+  flutter_cached_pdfview: ^0.4.3
+  like_button: ^2.1.0
+  favorite_button: ^0.0.4
+  flutter_screenutil: ^5.9.3
+  lottie: ^3.3.1
+  audio_wave: ^0.1.5
+  internet_connection_checker_plus: ^2.7.2
+  just_waveform: ^0.0.7
+  waved_audio_player: ^1.3.0
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.15
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon/logo.png"
+  min_sdk_android: 21
+  launcher_name: ^1.0.2
+
+launcher_name:
+  default: "FadFadly"
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
+    - assets/images/
+    - assets/images/login_screen/
+    - assets/images/splash_screen/
+    - assets/images/onboarding_images/
+    - assets/images/selection_screen/
+    - assets/images/app_icon/
+    - assets/images/signup/
+    - assets/images/splash_screen/splash.png
+    - assets/
+    - assets/fonts/
+    - assets/images/tests/test-cuate.svg
+    - assets/images/tests/test-cuate2.svg
+    - assets/images/home/img1.png
+    - assets/images/home/img2.png
+    - assets/images/home/img3.png
+    - assets/images/home/img4.png
+    - assets/images/home/img5.png
+    - assets/images/home/img6.png
+    - assets/images/tests/
+    - assets/images/habit_tracker/
+    - assets/images/habit_tracker/top.png
+    - assets/images/home/
+    - assets/images/habit_tracker/read.svg
+    - assets/images/habit_tracker/score.svg
+    - assets/images/habit_tracker/walk.svg
+    - assets/images/habit_tracker/yoga.svg
+    - assets/images/habit_tracker/podcast.svg
+    - assets/images/stop_watch/
+    - assets/images/stop_watch/circle.svg
+    - assets/images/stop_watch/background_shape.svg
+    - assets/images/stop_watch/leafes.svg
+    - assets/images/stop_watch/full_shape.svg
+    - assets/images/stop_watch/solid.svg
+    - assets/audio/bedside-alarm.mp3
+    - assets/images/bottom_nav/
+    - assets/images/profile/
+    - lib/features/auth/data/models/logout/
+    - assets/images/podcasts/
+    - assets/empty.json
+    - assets/no_internet_connection.json
+    - assets/no_connections.json
+  fonts:
+    - family: Baloo 2
+      fonts:
+        - asset: assets/fonts/Baloo2-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Baloo2-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Baloo2-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Baloo2-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Baloo2-ExtraBold.ttf
+          weight: 800
